@@ -9,7 +9,7 @@
 
 ## Installation
 
-The AWS SDK for Ruby is available from RubyGems. With V3 modularization, you
+The BLOCKSDK for Ruby is available from RubyGems.
 should pick the specific AWS service gems to install.
 
 ```ruby
