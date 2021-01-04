@@ -10,7 +10,7 @@
 ## Installation
 
 The BLOCKSDK for Ruby is available from RubyGems.
-should pick the specific AWS service gems to install.
+should pick the specific BLOCKSDK service gems to install.
 
 ```ruby
 gem install blocksdk
