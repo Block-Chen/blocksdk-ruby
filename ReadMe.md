@@ -1,4 +1,4 @@
-# AWS SDK for Ruby - Version 3
+# BLOCKSDK for Ruby
 
 [![Gem Version](https://badge.fury.io/rb/blocksdk.svg)](https://badge.fury.io/rb/blocksdk)
 
