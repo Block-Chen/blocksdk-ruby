@@ -2,9 +2,10 @@
 
 [![Gem Version](https://badge.fury.io/rb/blocksdk.svg)](https://badge.fury.io/rb/blocksdk)
 
-## Links of Interest
+## SDK Documentation
+[ Our BlockSDK-RUBY Page ](https://docs.blocksdk.com/) includes all the documentation related to RUBY SDK. Sample Codes, to Releases. Here are few quick links to get you there faster.
+* [ BlockSDK Developer Docs]
 
-* [API Documentation](https://docs.blocksdk.com)
 
 ## Installation
 
