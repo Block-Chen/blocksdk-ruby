@@ -29,8 +29,6 @@ class Dash < Base
 	end
 	
 	def getAddressInfo(request = {})
-
-		request["reverse"].to_s.empty? ? request['reverse'] = true : request["reverse"]
 		request["rawtx"].to_s.empty? ? request['rawtx'] = false : request['rawtx']
 		request["offset"].to_s.empty? ? request['offset'] = 0 : request["offset"]
 		request["limit"].to_s.empty? ? request['limit'] = 10 : request["limit"]
