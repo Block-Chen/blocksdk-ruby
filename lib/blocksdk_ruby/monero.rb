@@ -2,7 +2,7 @@ require_relative 'base'
 
 class Monero < Base
 	def getBlockChain(request = {})
-		return request("GET","/xmr/block")
+		return request("GET","/xmr/info")
 	end
 	
 	def getBlock(request = {})
@@ -10,7 +10,7 @@ class Monero < Base
 		request["offset"].to_s.empty? ? request['offset'] = 0 : request["offset"]
 		request["limit"].to_s.empty? ? request['limit'] = 10 : request["limit"]
 
-		return request("GET","/xmr/block/" +    (request['block']).to_s+ "",{
+		return request("GET","/xmr/blocks/" +    (request['block']).to_s+ "",{
 			"rawtx" => request['rawtx'],
 			"offset" => request['offset'],
 			"limit" => request['limit']
@@ -29,11 +29,11 @@ class Monero < Base
 		})
 	end
 	
-	def listAddress(request = {})
+	def getAddresses(request = {})
 		request["offset"].to_s.empty? ? request['offset'] = 0 : request["offset"]
 		request["limit"].to_s.empty? ? request['limit'] = 10 : request["limit"]
 		
-		return request("GET","/xmr/address",{
+		return request("GET","/xmr/addresses",{
 			"offset" => request['offset'],
 			"limit" => request['limit']
 		})
@@ -41,7 +41,7 @@ class Monero < Base
 
 	def createAddress(request = {})
 		request["name"].to_s.empty? ? request['name'] = nil : request["name"]	
-		return request("POST","/xmr/address",{
+		return request("POST","/xmr/addresses",{
 			"name" => request['name']
 		})
 	end
@@ -50,7 +50,7 @@ class Monero < Base
 		request["offset"].to_s.empty? ? request['offset'] = 0 : request["offset"]
 		request["limit"].to_s.empty? ? request['limit'] = 10 : request["limit"]
 		
-		return request("GET","/xmr/address/" + (request['address_id']).to_s+ "",{
+		return request("GET","/xmr/addresses/" + (request['address_id']).to_s+ "",{
 			"offset" => request['offset'],
 			"limit" => request['limit'],
 			"private_spend_key" => request['private_spend_key'],
@@ -58,20 +58,20 @@ class Monero < Base
 	end
 	
 	def getAddressBalance(request = {})
-		return request("GET","/xmr/address/" + (request['address_id']).to_s+ "/balance",{
+		return request("GET","/xmr/addresses/" + (request['address_id']).to_s+ "/balance",{
 			"private_spend_key" => request['private_spend_key'],
 		})
 	end
 
 	def loadAddress(request = {})
-		return request("POST","/xmr/address/" + (request['address_id']).to_s+ "/load",{
+		return request("POST","/xmr/addresses/" + (request['address_id']).to_s+ "/load",{
 			"private_spend_key" => request['private_spend_key'],
 			"password" => request['password']
 		})
 	end
 
-	def unLoadAddress(request = {})		
-		return request("POST","/xmr/address/" + (request['address_id']).to_s+ "/unload")
+	def unloadAddress(request = {})		
+		return request("POST","/xmr/addresses/" + (request['address_id']).to_s+ "/unload")
 	end
 
 	def sendToAddress(request = {})
@@ -83,17 +83,25 @@ class Monero < Base
 
 		request["private_spend_key"].to_s.empty? ? request['private_spend_key'] = nil : request["private_spend_key"]
 		request["password"].to_s.empty? ? request['password'] = nil : request["password"]
+		request["subtractfeefromamount"].to_s.empty? ? request['subtractfeefromamount'] = false : request['subtractfeefromamount']
 		
-		return request("POST","/xmr/address/" +    (request['address_id']).to_s+ "/sendtoaddress",{
+		return request("POST","/xmr/addresses/" +    (request['address_id']).to_s+ "/sendtoaddress",{
 			"address" => request['address'],
 			"amount" => request['amount'],
 			"private_spend_key" => request['private_spend_key'],
 			"password" => request['password'],
-			"kbfee" => request['kbfee']
+			"kbfee" => request['kbfee'],
+			"subtractfeefromamount" => request['subtractfeefromamount']
+		})
+	end
+	
+	def sendTransaction(request = {})		
+		return request("POST","/xmr/transactions/send",{
+			"hex" => request['hex']
 		})
 	end
 
 	def getTransaction(request = {})		
-		return request("GET","/xmr/transaction/" + (request['hash']).to_s+ "")
+		return request("GET","/xmr/transactions/" + (request['hash']).to_s+ "")
 	end
 end
