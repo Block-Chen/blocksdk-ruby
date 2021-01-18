@@ -7,33 +7,9 @@ class Base
 	def initialize(api_token)
 		@api_token = api_token
 	end
-	
-	def listPrice(request = {})
-		return request("GET","/price")
-	end
-
-	def getHashType(request = {})
-		return request("GET","/auto/" + request['hash'] + "/type") 
-	end
-
-	def getUsage(request = {})
-
-		if request["start_date"].to_s.empty?
-			d = Time.now - 604800
-			request['start_date'] = d.strftime("%Y-%m-%d")
-		end
-
-		if request["end_date"].to_s.empty?
-			d = Time.now
-			request['end_date'] = d.strftime("%Y-%m-%d")
-		end
-
-		return request("GET","/usage",{"start_date"=> request['start_date'],"end_date"=> request['end_date']})
-	end
-
 
 	def request(method,path,data = {})
-		url = "https://api.blocksdk.com/v1" + path 
+		url = "https://api.blocksdk.com/v2" + path 
 		if method == "GET" and data.size > 0
 			url += "?"
 			data.each do |key, value|
