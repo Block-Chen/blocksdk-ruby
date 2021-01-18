@@ -6,7 +6,9 @@ require_relative 'bitcoincash'
 require_relative 'monero'
 require_relative 'webhook'
 require_relative 'litecoin'
-require_relative 'price'
+require_relative 'market'
+require_relative 'token'
+require_relative 'tool'
 
 class BlockSDK < Base
 	attr_accessor :api_token
@@ -31,10 +33,6 @@ class BlockSDK < Base
 		return Monero.new(@api_token)
 	end
 
-	def createPrice()
-		return Price.new(@api_token)
-	end
-
 	def createWebHook()
 		return WebHook.new(@api_token)
 	end
@@ -45,5 +43,17 @@ class BlockSDK < Base
 
 	def createBitcoinCash()
 		return BitcoinCash.new(@api_token)
+	end
+	
+	def createMarket()
+		return Market.new(@api_token)
+	end
+	
+	def createToken()
+		return Token.new(@api_token)
+	end
+	
+	def createTool()
+		return Tool.new(@api_token)
 	end
 end
