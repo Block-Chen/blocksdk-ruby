@@ -108,7 +108,7 @@ class Litecoin < Base
 		return request("GET","/ltc/wallets/"+(request['wallet_id']).to_s + "/balance")		
 	end
 
-	def getWalletTransaction(request = {})
+	def getWalletTransactions(request = {})
 
 		request["order"].to_s.empty? ? request['order'] = 'desc' : request["order"]
 		request["type"].to_s.empty? ? request['type'] = 'all' : request["type"]
