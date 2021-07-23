@@ -16,6 +16,8 @@ should pick the specific BLOCKSDK service gems to install.
 
 ```ruby
 gem install blocksdk
+gem install httparty
+gem install json
 ```
 
 ## Quick Examples
